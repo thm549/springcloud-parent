@@ -1,6 +1,7 @@
 package com.thm.springcloud.controller;
 
 import com.thm.springcloud.base.CommonResult;
+import com.thm.springcloud.service.OrderFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,10 +18,14 @@ public class PaymentController {
 
     private static final String SERVICE_NAME = "http://cloud-order-service";
 
+    @Autowired
+    private OrderFeignService orderFeignService;
+
     @RequestMapping("/order")
     public CommonResult getOrder(){
-        CommonResult forObject = restTemplate.getForObject(SERVICE_NAME+"/order/get", CommonResult.class);
-        return forObject;
+//        CommonResult object = restTemplate.getForObject(SERVICE_NAME+"/order/get", CommonResult.class);
+        CommonResult object = orderFeignService.getOrder();
+        return object;
     }
 
 }
