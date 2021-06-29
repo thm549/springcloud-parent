@@ -25,6 +25,10 @@ public class CommonResult {
         return new CommonResult(HttpStatus.HTTP_OK, "OK", data);
     }
 
+    public static CommonResult success(String msg,Object data) {
+        return new CommonResult(HttpStatus.HTTP_OK, msg, data);
+    }
+
     public static CommonResult error(String msg) {
         return new CommonResult(HttpStatus.HTTP_INTERNAL_ERROR, msg, null);
     }
